@@ -7,7 +7,7 @@
 # This is a quick and dirty script there are some error checking
 # IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
-# Define the software that would be inbstalled 
+# Define the software that would be installed 
 #Need some prep work
 prep_stage=(
     qt5-wayland 
@@ -30,10 +30,18 @@ prep_stage=(
 
 #the main packages
 install_stage=(
+    reflector
+    amd-ucode
+    neovim
+    rustup
+    discord
+    vulkan-radeon
+    steam
+    ani-cli
+    yt-dlp
     kitty 
     mako 
-    waybar
-    swww 
+    waybar 
     swaylock-effects 
     wofi 
     wlogout 
@@ -44,7 +52,6 @@ install_stage=(
     thunar 
     btop
     firefox
-    thunderbird
     mpv
     pamixer 
     pavucontrol 
@@ -233,6 +240,10 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     # Clean out other portals
     echo -e "$CNT - Cleaning out conflicting xdg portals..."
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
+
+    # additional setup
+    sudo echo "--country ''" >> /etc/xdg/reflector/reflector.conf # '' => worldwide
+    sudo systemctl enable reflector.service reflector.timer &>> $INSTLOG
 fi
 
 ### Copy Config Files ###
@@ -240,19 +251,24 @@ read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) '
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
 
-    # copy the HyprV directory
-    cp -R HyprV ~/.config/
+    # copy the HyprV directory if not cloned to Documents
+    if [ -d "~/Documents/HyprInstall/HyprV" ]; then 
+        echo -e "$CAT - HyprInstall found in ~/Documents"
+    else
+        echo -e "$CAT - HyprInstall not cloned to ~/Documents. copying HyprV..."
+        cp -R HyprV ~/Documents/HyprInstall
+    fi
 
     #set the measuring unit
     echo -e "$CNT - Attempring to set mesuring unit..."
     if locale -a | grep -q ^en_US; then # inverted the if, because i prefer metric
         echo -e "$COK - Setting mesuring system to metric..."
         sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/.config/HyprV/hyprv.conf
-        ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
     else
         echo -e "$COK - Setting measuring system to imperial..."
         sed -i 's/SET_MESU=""/SET_MESU="I"/' ~/.config/HyprV/hyprv.conf
-        ln -sf ~/.config/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
     fi
 
     # Setup each appliaction
@@ -272,15 +288,15 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # link up the config files
     echo -e "$CNT - Setting up the new config..." 
-    cp ~/.config/HyprV/hypr/* ~/.config/hypr/
-    ln -sf ~/.config/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
-    ln -sf ~/.config/HyprV/mako/conf/config-dark ~/.config/mako/config
-    ln -sf ~/.config/HyprV/swaylock/config ~/.config/swaylock/config
-    ln -sf ~/.config/HyprV/waybar/conf/v4-config.jsonc ~/.config/waybar/config.jsonc
-    ln -sf ~/.config/HyprV/waybar/style/v4-style-dark.css ~/.config/waybar/style.css
-    ln -sf ~/.config/HyprV/wlogout/layout ~/.config/wlogout/layout
-    ln -sf ~/.config/HyprV/wofi/config ~/.config/wofi/config
-    ln -sf ~/.config/HyprV/wofi/style/v4-style-dark.css ~/.config/wofi/style.css
+    cp ~/Documents/HyprInstall/HyprV/hypr/* ~/.config/hypr/
+    ln -sf ~/Documents/HyprInstall/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
+    ln -sf ~/Documents/HyprInstall/HyprV/mako/conf/config-dark ~/.config/mako/config
+    ln -sf ~/Documents/HyprInstall/HyprV/swaylock/config ~/.config/swaylock/config
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/v4-config.jsonc ~/.config/waybar/config.jsonc
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/style/v4-style-dark.css ~/.config/waybar/style.css
+    ln -sf ~/Documents/HyprInstall/HyprV/wlogout/layout ~/.config/wlogout/layout
+    ln -sf ~/Documents/HyprInstall/HyprV/wofi/config ~/.config/wofi/config
+    ln -sf ~/Documents/HyprInstall/HyprV/wofi/style/v4-style-dark.css ~/.config/wofi/style.css
 
 
     # Copy the SDDM theme
@@ -305,7 +321,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
-    cp -f ~/.config/HyprV/backgrounds/wallpaper.png /usr/share/sddm/themes/sdt/wallpaper.png
+    cp -f ~/Documents/HyprInstall/HyprV/backgrounds/wallpaper.png /usr/share/sddm/themes/sdt/wallpaper.png
 fi
 
 ### Install the starship shell ###
