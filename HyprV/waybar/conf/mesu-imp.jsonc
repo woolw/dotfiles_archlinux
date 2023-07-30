@@ -4,15 +4,6 @@
         "tooltip-format": "{: %A, %B %e %Y}"
     },
 
-    "custom/weather": {
-        //shows the current weather and forecast
-        "tooltip" : true,
-        "format" : "{}",
-        "interval" : 30,
-        "exec" : "~/Documents/HyprInstall/HyprV/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
-    },
-
     "temperature": {
         "thermal-zone": 1,
         "format": "",

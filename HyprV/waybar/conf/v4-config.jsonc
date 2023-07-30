@@ -32,7 +32,6 @@
     
     "include": [
         "~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc",
-        "~/Documents/HyprInstall/HyprV/waybar/conf/asus-rog.jsonc",
         "~/Documents/HyprInstall/HyprV/waybar/conf/hyprv-util.jsonc"
     ],
 
