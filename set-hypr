@@ -263,12 +263,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Attempring to set mesuring unit..."
     if locale -a | grep -q ^en_US; then # inverted the if, because i prefer metric
         echo -e "$COK - Setting mesuring system to metric..."
-        sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/.config/HyprV/hyprv.conf
-        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+        sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/Documents/HyprInstall/HyprV/hyprv.conf
+        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-met.jsonc ~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc
     else
         echo -e "$COK - Setting measuring system to imperial..."
-        sed -i 's/SET_MESU=""/SET_MESU="I"/' ~/.config/HyprV/hyprv.conf
-        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+        sed -i 's/SET_MESU=""/SET_MESU="I"/' ~/Documents/HyprInstall/HyprV/hyprv.conf
+        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-imp.jsonc ~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc
     fi
 
     # Setup each appliaction
