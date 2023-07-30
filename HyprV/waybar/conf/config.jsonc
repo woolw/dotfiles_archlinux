@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "position": "bottom",
+    "position": "top",
     "mod": "dock",
     "exclusive": true,
     "passthrough": false,
@@ -8,50 +8,42 @@
     "height": 20,
     "modules-left": [
         "custom/launch_wofi",
-        "custom/power_btn",
-        "custom/lock_screen",
-        "wlr/workspaces",
-        "wlr/taskbar"
+        "wlr/taskbar",
+        "wlr/workspaces"
     ],
-    "modules-right": [
+    "modules-center": [
         "cpu",
         "memory",
         "disk",
         "temperature",
-        "custom/power_profile",
-        "battery",
-        "pulseaudio",
-        "pulseaudio#microphone",
-        "backlight",
-        "tray",
-        "custom/weather",
         "custom/updates",
         "clock",
-        "custom/myhyprv",
-        "custom/light_dark"
+        "tray"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "battery"
     ],
     
-    "include": [
-        "~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc",
-        "~/Documents/HyprInstall/HyprV/waybar/conf/hyprv-util.jsonc"
-    ],
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{: %A, %e %B %Y}"
+    },
+
+    "temperature": {
+        "thermal-zone": 1,
+        "format": "",
+        "format-alt-click": "click-right",
+        "format-alt": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
 
     "custom/launch_wofi": {
         "format": "",
-        "on-click": "pkill wofi || wofi -n -c ~/Documents/HyprInstall/HyprV/wofi/config-bmenu",
-        "tooltip": false
-    },
-
-    "custom/power_btn": {
-        "format": "",
-        "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
-        "tooltip": false
-    },
-
-
-    "custom/lock_screen": {
-        "format": "",
-        "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
+        "on-click": "pkill wofi || wofi -n",
         "tooltip": false
     },
 
@@ -134,12 +126,12 @@
     },
 
     "pulseaudio": {
-        "format": "{icon}",
+        "format": "{icon} {volume}%",
         "format-muted": "",
-        "on-click": "~/Documents/HyprInstall/HyprV/waybar/scripts/volume --toggle",
+        "on-click": "pamixer -t",
         "on-click-right": "pavucontrol",
-        "on-scroll-up": "~/Documents/HyprInstall/HyprV/waybar/scripts/volume --inc",
-        "on-scroll-down": "~/Documents/HyprInstall/HyprV/waybar/scripts/volume --dec",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -149,32 +141,18 @@
             "portable": "",
             "car": "",
             "default": ["", "", ""]
-        },
-        "tooltip": true,
-        "tooltip-format": "{icon} at {volume}%"
+        }
     },
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "~/Documents/HyprInstall/HyprV/waybar/scripts/volume --toggle-mic",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "pamixer --default-source -t",
         "on-click-right": "pavucontrol",
-        "on-scroll-up": "~/Documents/HyprInstall/HyprV/waybar/scripts/volume --mic-inc",
-        "on-scroll-down": "~/Documents/HyprInstall/HyprV/waybar/scripts/volume --mic-dec",
-        "scroll-step": 5,
-        "tooltip": true,
-        "tooltip-format": " at {volume}%"
-    },
-
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon}",
-        "format-alt-click": "click-right",
-        "format-alt": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "~/Documents/HyprInstall/HyprV/waybar/scripts/brightness --inc",
-        "on-scroll-down": "~/Documents/HyprInstall/HyprV/waybar/scripts/brightness --dec"
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
     },
 
     "tray": {
@@ -184,8 +162,8 @@
 
     "custom/updates": {
         "format": "{}",
-        "exec": "~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys",
-        "on-click": "~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys update",
+        "exec": "~/.config/waybar/scripts/update-sys",
+        "on-click": "~/.config/waybar/scripts/update-sys update",
         "interval": 300,
         "tooltip": true
     }

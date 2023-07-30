@@ -290,13 +290,14 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Setting up the new config..." 
     cp ~/Documents/HyprInstall/HyprV/hypr/* ~/.config/hypr/
     ln -sf ~/Documents/HyprInstall/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
-    ln -sf ~/Documents/HyprInstall/HyprV/mako/conf/config-dark ~/.config/mako/config
+    ln -sf ~/Documents/HyprInstall/HyprV/mako/conf/config ~/.config/mako/config
     ln -sf ~/Documents/HyprInstall/HyprV/swaylock/config ~/.config/swaylock/config
-    ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/v4-config.jsonc ~/.config/waybar/config.jsonc
-    ln -sf ~/Documents/HyprInstall/HyprV/waybar/style/v4-style-dark.css ~/.config/waybar/style.css
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/config.jsonc ~/.config/waybar/config.jsonc
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/style/style.css ~/.config/waybar/style.css
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys ~/.config/waybar/scripts/update-sys
     ln -sf ~/Documents/HyprInstall/HyprV/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/Documents/HyprInstall/HyprV/wofi/config ~/.config/wofi/config
-    ln -sf ~/Documents/HyprInstall/HyprV/wofi/style/v4-style-dark.css ~/.config/wofi/style.css
+    ln -sf ~/Documents/HyprInstall/HyprV/wofi/style/style.css ~/.config/wofi/style.css
 
 
     # Copy the SDDM theme
