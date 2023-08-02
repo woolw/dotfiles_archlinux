@@ -261,16 +261,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
         cp -R HyprV ~/Documents/HyprInstall
     fi
 
-    #set the measuring unit
-    echo -e "$CNT - Attempring to set mesuring unit..."
-    if locale -a | grep -q ^en_US; then # inverted the if, because i prefer metric
-        echo -e "$COK - Setting mesuring system to metric..."
-        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-met.jsonc ~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc
-    else
-        echo -e "$COK - Setting measuring system to imperial..."
-        ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-imp.jsonc ~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc
-    fi
-
     # Setup each appliaction
     # check for existing config folders and backup 
     for DIR in hypr kitty mako swaylock waybar wlogout wofi 
