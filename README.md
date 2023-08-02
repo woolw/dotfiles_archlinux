@@ -1,6 +1,6 @@
 # Hyprland install for ArchLinux
 
-It contains a collection of dot config files for hyprland with a simple install script.
+It contains a collection of dot config files for hyprland with a simple install script.  
 IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
 You can grab the config files and install packages by hand with the command listed below
@@ -13,4 +13,4 @@ As per my preference I usually keep all my cloned repos in ~/Documents, therefor
 
 # Thanks for the base
 
-https://github.com/SolDoesTech/HyprV4
+[SolDoesTech](https://github.com/SolDoesTech)
