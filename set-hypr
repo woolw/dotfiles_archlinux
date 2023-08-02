@@ -53,6 +53,7 @@ install_stage=(
     btop
     firefox
     mpv
+    obsidian
     pamixer 
     pavucontrol 
     brightnessctl 
