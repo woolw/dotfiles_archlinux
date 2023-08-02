@@ -73,6 +73,7 @@ install_stage=(
     xfce4-settings
     nwg-look-bin
     sddm
+    hyprpaper
 )
 
 for str in ${myArray[@]}; do
@@ -253,7 +254,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
 
     # copy the HyprV directory if not cloned to Documents
-    if [ -d "~/Documents/HyprInstall/HyprV" ]; then 
+    if [ -d ~/Documents/HyprInstall/HyprV ]; then 
         echo -e "$CAT - HyprInstall found in ~/Documents"
     else
         echo -e "$CAT - HyprInstall not cloned to ~/Documents. copying HyprV..."
@@ -264,11 +265,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Attempring to set mesuring unit..."
     if locale -a | grep -q ^en_US; then # inverted the if, because i prefer metric
         echo -e "$COK - Setting mesuring system to metric..."
-        sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/Documents/HyprInstall/HyprV/hyprv.conf
         ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-met.jsonc ~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc
     else
         echo -e "$COK - Setting measuring system to imperial..."
-        sed -i 's/SET_MESU=""/SET_MESU="I"/' ~/Documents/HyprInstall/HyprV/hyprv.conf
         ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/mesu-imp.jsonc ~/Documents/HyprInstall/HyprV/waybar/conf/mesu.jsonc
     fi
 
@@ -289,13 +288,20 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # link up the config files
     echo -e "$CNT - Setting up the new config..." 
+    cp ~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys ~/.config/waybar/scripts/
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys ~/.config/waybar/scripts/update-sys
+
     cp ~/Documents/HyprInstall/HyprV/hypr/* ~/.config/hypr/
+    ln -sf ~/Documents/HyprInstall/HyprV/hypr/hyprpaper.conf ~/.config/hypr/hyprpaper.conf
+    ln -sf ~/Documents/HyprInstall/HyprV/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
+    ln -sf ~/Documents/HyprInstall/HyprV/hypr/env_var.conf ~/.config/hypr/env_var.conf
+    ln -sf ~/Documents/HyprInstall/HyprV/hypr/wallpaper.png ~/.config/hypr/wallpaper.png
+
     ln -sf ~/Documents/HyprInstall/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
     ln -sf ~/Documents/HyprInstall/HyprV/mako/conf/config ~/.config/mako/config
     ln -sf ~/Documents/HyprInstall/HyprV/swaylock/config ~/.config/swaylock/config
     ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/config.jsonc ~/.config/waybar/config.jsonc
     ln -sf ~/Documents/HyprInstall/HyprV/waybar/style/style.css ~/.config/waybar/style.css
-    ln -sf ~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys ~/.config/waybar/scripts/update-sys
     ln -sf ~/Documents/HyprInstall/HyprV/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/Documents/HyprInstall/HyprV/wofi/config ~/.config/wofi/config
     ln -sf ~/Documents/HyprInstall/HyprV/wofi/style/style.css ~/.config/wofi/style.css
@@ -323,7 +329,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
-    cp -f ~/Documents/HyprInstall/HyprV/backgrounds/wallpaper.png /usr/share/sddm/themes/sdt/wallpaper.png
 fi
 
 ### Install the starship shell ###
