@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-    background: #1e1e2e;
+    background: rgba(21, 18, 27, 0);
     color: #cdd6f4;
 }
 
@@ -21,7 +21,7 @@ tooltip {
     border-color: #11111b;
 }
 
-tooltip label{
+tooltip label {
     color: #cdd6f4;
 }
 
@@ -59,7 +59,6 @@ tooltip label{
 #custom-power_btn,
 #custom-power_profile,
 #custom-weather,
-#custom-myhyprv,
 #window,
 #cpu,
 #disk,
@@ -75,16 +74,27 @@ tooltip label{
 #backlight {
     background: #1e1e2e;
     opacity: 0.8;
-    padding: 0px 8px;
-    margin: 0px 3px;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 10px;
     border: 0px;
 }
 
-#custom-launch_wofi {
+#tray,
+#custom-lock_screen,
+#temperature,
+#backlight,
+#custom-launch_wofi,
+#cpu {
     border-radius: 10px 0px 0px 10px;
 }
 
-#custom-light_dark {
+#custom-light_dark,
+#custom-power_btn,
+#workspaces,
+#pulseaudio.microphone,
+#battery,
+#disk {
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px;
 }
@@ -99,7 +109,7 @@ tooltip label{
     padding-left: 5px;
 }
 
-#custom-power_profile, #battery, #temperature{
+#custom-power_profile {
     color: #a6e3a1;
     border-left: 0px;
     border-right: 0px;

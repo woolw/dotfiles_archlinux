@@ -288,24 +288,23 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # link up the config files
     echo -e "$CNT - Setting up the new config..." 
-    cp ~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys ~/.config/waybar/scripts/
-    ln -sf ~/Documents/HyprInstall/HyprV/waybar/scripts/update-sys ~/.config/waybar/scripts/update-sys
-
     cp ~/Documents/HyprInstall/HyprV/hypr/* ~/.config/hypr/
     ln -sf ~/Documents/HyprInstall/HyprV/hypr/hyprpaper.conf ~/.config/hypr/hyprpaper.conf
     ln -sf ~/Documents/HyprInstall/HyprV/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
     ln -sf ~/Documents/HyprInstall/HyprV/hypr/env_var.conf ~/.config/hypr/env_var.conf
     ln -sf ~/Documents/HyprInstall/HyprV/hypr/wallpaper.png ~/.config/hypr/wallpaper.png
 
+    cp ~/Documents/HyprInstall/HyprV/waybar/update-sys ~/.config/waybar/
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/update-sys ~/.config/waybar/update-sys
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/config.jsonc ~/.config/waybar/config.jsonc
+    ln -sf ~/Documents/HyprInstall/HyprV/waybar/style.css ~/.config/waybar/style.css
+
     ln -sf ~/Documents/HyprInstall/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
     ln -sf ~/Documents/HyprInstall/HyprV/mako/conf/config ~/.config/mako/config
     ln -sf ~/Documents/HyprInstall/HyprV/swaylock/config ~/.config/swaylock/config
-    ln -sf ~/Documents/HyprInstall/HyprV/waybar/conf/config.jsonc ~/.config/waybar/config.jsonc
-    ln -sf ~/Documents/HyprInstall/HyprV/waybar/style/style.css ~/.config/waybar/style.css
     ln -sf ~/Documents/HyprInstall/HyprV/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/Documents/HyprInstall/HyprV/wofi/config ~/.config/wofi/config
     ln -sf ~/Documents/HyprInstall/HyprV/wofi/style/style.css ~/.config/wofi/style.css
-
 
     # Copy the SDDM theme
     echo -e "$CNT - Setting up the login screen."
