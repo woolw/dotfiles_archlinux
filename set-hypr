@@ -38,6 +38,8 @@ install_stage=(
     vulkan-radeon
     steam
     ani-cli
+    syncplay
+    pyside2
     yt-dlp
     kitty 
     mako 
@@ -223,7 +225,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     install_software hyprland
 
     # Stage 1 - main components
-    echo -e "$CNT - Installing main components, this may take a while..."
+    echo -e "$CNT - Installing some additional packages and components, this may take a while..."
     for SOFTWR in ${install_stage[@]}; do
         install_software $SOFTWR 
     done
