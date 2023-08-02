@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# HyprV4 By SolDoesTech - https://www.youtube.com/@SolDoesTech
 # License..? - You may copy, edit and ditribute this script any way you like, enjoy! :)
 
 # The follwoing will attempt to install all needed packages to run Hyprland
@@ -245,7 +244,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 
     # additional setup
-    sudo echo "--country ''" >> /etc/xdg/reflector/reflector.conf # '' => worldwide
     sudo systemctl enable reflector.service reflector.timer &>> $INSTLOG
 fi
 
