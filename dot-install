@@ -52,7 +52,7 @@ install_stage=(
     slurp 
     thunar 
     btop
-    brave
+    brave-bin
     mpv
     obsidian
     pamixer 
