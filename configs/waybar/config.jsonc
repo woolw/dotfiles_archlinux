@@ -8,22 +8,22 @@
     "height": 20,
     "modules-left": [
         "custom/launch_wofi",
-        "wlr/taskbar",
         "wlr/workspaces",
-        "cpu",
-        "memory",
-        "disk"
+        "wlr/taskbar"
     ],
     "modules-center": [
-        "temperature",
-        "custom/updates",
-        "clock",
         "tray"
     ],
     "modules-right": [
+        "cpu",
+        "memory",
+        "disk",
+        "custom/updates",
+        "temperature",
         "pulseaudio",
         "pulseaudio#microphone",
-        "battery"
+        "battery",
+        "clock"
     ],
     "clock": {
         "format": "{:%H:%M}",
