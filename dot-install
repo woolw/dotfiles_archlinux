@@ -241,9 +241,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
 
     # copy the configs directory if not cloned to Documents
-    if [ -d ~/Documents/dotfiles/configs ]; then 
-        echo -e "$CAT - dotfiles found in ~/Documents"
-    else
+    if [ ! -d ~/Documents/dotfiles/configs ]; then 
         echo -e "$CAT - dotfiles not cloned to ~/Documents. copying configs..."
         cp -R configs ~/Documents/dotfiles
     fi
@@ -291,15 +289,13 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 fi
 
 ### Install the starship shell ###
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate the starship shell? (y,n) ' STAR
-if [[ $STAR == "Y" || $STAR == "y" ]]; then
-    # install the starship shell
-    echo -e "$CNT - Hansen Crusher, Engage!"
-    echo -e "$CNT - Updating .bashrc..."
-    echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
-    echo -e "$CNT - copying starship config file to ~/.config ..."
-    cp configs/starship.toml ~/.config/
-fi
+# install the starship shell
+echo -e "$CNT - Hansen Crusher, Engage!"
+echo -e "$CNT - Updating .bashrc..."
+echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
+echo -e "$CNT - copying starship config file to ~/.config ..."
+cp ~/Documents/dotfiles/configs/starship.toml ~/.config/
+
 
 ### Script is done ###
 echo -e "$CNT - Script had completed!"

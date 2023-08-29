@@ -9,7 +9,13 @@ Now install it all using the attached script "dot-install".
 
 # Note
 
-As per my preference I usually keep all my cloned repos in ~/Documents, therefore this script will assume the same and maybe copy some files there if cloned elsewhere 
+As per my preference I usually keep all my cloned repos in ~/Documents, therefore this script will assume the same and maybe copy some files there if cloned elsewhere  
+
+# Install and Run
+
+```bash 
+git clone https://github.com/woolw/dotfiles ~/Documents/dotfiles && chmod +x ~/Documents/dotfiles/dot-install && ./Documents/dotfiles/dot-install
+```
 
 # Thanks for the base
 
