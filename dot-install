@@ -72,7 +72,6 @@ install_stage=(
     lxappearance 
     xfce4-settings
     nwg-look-bin
-    sddm
     hyprpaper
 )
 
@@ -228,11 +227,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     sudo systemctl enable --now bluetooth.service &>> $INSTLOG
     sleep 2
 
-    # Enable the sddm login manager service
-    echo -e "$CNT - Enabling the SDDM Service..."
-    sudo systemctl enable sddm &>> $INSTLOG
-    sleep 2
-    
     # Clean out other portals
     echo -e "$CNT - Cleaning out conflicting xdg portals..."
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
@@ -289,23 +283,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     ln -sf ~/Documents/dotfiles/configs/wofi/config ~/.config/wofi/config
     ln -sf ~/Documents/dotfiles/configs/wofi/style/style.css ~/.config/wofi/style.css
 
-    # Copy the SDDM theme
-    echo -e "$CNT - Setting up the login screen."
-    sudo cp -R Extras/sdt /usr/share/sddm/themes/
-    sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
-    sudo mkdir /etc/sddm.conf.d
-    echo -e "[Theme]\nCurrent=sdt" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
-    WLDIR=/usr/share/wayland-sessions
-    if [ -d "$WLDIR" ]; then
-        echo -e "$COK - $WLDIR found"
-    else
-        echo -e "$CWR - $WLDIR NOT found, creating..."
-        sudo mkdir $WLDIR
-    fi 
-    
-    # stage the .desktop file
-    sudo cp Extras/hyprland.desktop /usr/share/wayland-sessions/
-
     # setup the first look and feel as dark
     xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
@@ -321,14 +298,14 @@ if [[ $STAR == "Y" || $STAR == "y" ]]; then
     echo -e "$CNT - Updating .bashrc..."
     echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
     echo -e "$CNT - copying starship config file to ~/.config ..."
-    cp Extras/starship.toml ~/.config/
+    cp configs/starship.toml ~/.config/
 fi
 
 ### Script is done ###
 echo -e "$CNT - Script had completed!"
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
 if [[ $HYP == "Y" || $HYP == "y" ]]; then
-    exec sudo systemctl start sddm &>> $INSTLOG
+    exec Hyprland &>> $INSTLOG
 else
     exit
 fi
