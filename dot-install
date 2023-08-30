@@ -68,7 +68,13 @@ install_stage=(
     starship 
     papirus-icon-theme 
     ttf-jetbrains-mono-nerd 
+    ttf-font-awesome
+    ttf-hannom
+    ttf-hanazono
+    ttf-baekmuk
+    noto-fonts
     noto-fonts-emoji 
+    ttf-linux-libertine
     lxappearance 
     xfce4-settings
     nwg-look-bin
