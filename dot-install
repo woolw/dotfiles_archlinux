@@ -36,6 +36,7 @@ install_stage=(
     discord
     vulkan-radeon
     steam
+    gamemode
     ani-cli
     syncplay
     pyside2
