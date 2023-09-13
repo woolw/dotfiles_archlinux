@@ -1,6 +1,6 @@
 # Maintainer: woolw woolw@pm.me
 pkgname='woolw-dotfiles-git'
-pkgver=VERSION
+pkgver=r48.c6e1048
 pkgrel=1
 pkgdesc='mainly hyprland dotfiles with setup script for archlinux'
 arch=('any')
