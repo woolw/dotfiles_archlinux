@@ -75,9 +75,11 @@ makedepends=('stow')
 # add AUR packages here
 optdepends=(
     'ani-cli'
+    'brave-bin'
     'nwg-look-bin'
     'swaylock-effects'
     'wlogout'
+    'yay'
 ) 
 source=('dotfiles::git+https://github.com/woolw/dotfiles')
 md5sums=('SKIP')
