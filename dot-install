@@ -30,17 +30,6 @@ prep_stage=(
 #the main packages
 install_stage=(
     reflector
-    amd-ucode
-    neovim
-    rustup
-    discord
-    vulkan-radeon
-    steam
-    gamemode
-    ani-cli
-    syncplay
-    pyside2
-    yt-dlp
     kitty 
     mako 
     waybar 
@@ -52,10 +41,8 @@ install_stage=(
     grim 
     slurp 
     thunar 
-    btop
     brave-bin
     mpv
-    obsidian
     pamixer 
     pavucontrol 
     brightnessctl 
@@ -67,15 +54,7 @@ install_stage=(
     thunar-archive-plugin 
     file-roller
     starship 
-    papirus-icon-theme 
-    ttf-jetbrains-mono-nerd 
-    ttf-font-awesome
-    ttf-hannom
-    ttf-hanazono
-    ttf-baekmuk
-    noto-fonts
-    noto-fonts-emoji 
-    ttf-linux-libertine
+    papirus-icon-theme
     lxappearance 
     xfce4-settings
     nwg-look-bin
@@ -283,8 +262,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     ln -sf ~/Documents/dotfiles/configs/kitty/kitty.conf ~/.config/kitty/kitty.conf
     ln -sf ~/Documents/dotfiles/configs/mako/conf/config ~/.config/mako/config
-    ln -sf ~/Documents/dotfiles/configs/swaylock/config ~/.config/swaylock/config
-    ln -sf ~/Documents/dotfiles/configs/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/Documents/dotfiles/configs/wofi/config ~/.config/wofi/config
     ln -sf ~/Documents/dotfiles/configs/wofi/style/style.css ~/.config/wofi/style.css
 
